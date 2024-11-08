@@ -3,9 +3,9 @@ import "./Add.css";
 import { assets } from "../../assets/assets";
 import axios from "axios";
 import { toast } from "react-toastify";
-export const AddPage = ({ url }) => {
+export const Add = ({ url }) => {
   const [image, setImage] = useState(false);
-  cnst[(data, setData)] = useState({
+  const [data, setData] = useState({
     name: "",
     description: "",
     price: "",
@@ -44,76 +44,78 @@ export const AddPage = ({ url }) => {
   };
 
   return (
-    <div className="add">
-      <form className="flex-col" onSubmit={onSubmitHandler}>
-        <div className="add-image-upload flex-col">
-          <p>Upload Image</p>
-          <label htmlFor="image">
-            <img
-              src={image ? URL.createObjectURL(image) : assets.upload_area}
-              alt=""
+    <>
+      <div className="add">
+        <form className="flex-col" onSubmit={onSubmitHandler}>
+          <div className="add-image-upload flex-col">
+            <p>Upload Image</p>
+            <label htmlFor="image">
+              <img
+                src={image ? URL.createObjectURL(image) : assets.upload_area}
+                alt=""
+              />
+            </label>
+            <input
+              onChange={(e) => setImage(e.target.files[0])}
+              type="file"
+              id="image"
+              hidden
+              required
             />
-          </label>
-          <input
-            onChange={(e) => setImage(e.target.files[0])}
-            type="file"
-            id="image"
-            hidden
-            required
-          />
-        </div>
-        <div className="add-product-name flex-col">
-          <p>Product Name</p>
-          <input
-            onChange={onChangeHandler}
-            value={data.name}
-            type="text"
-            name="name"
-            placeholder="Type here"
-          />
-        </div>
-        <div className="add-product-description">
-          <p>Product Description</p>
-          <textarea
-            onChange={onChangeHandler}
-            value={data.description}
-            name="description"
-            id=""
-            rows={"6"}
-            placeholder="Write content here"
-          ></textarea>
-        </div>
-        <div className="add-category-price">
-          <div className="add-category flex-col">
-            <p>Product Category</p>
-            <select name="category" id="" onChange={onChangeHandler}>
-              <option value="Salad">Salad</option>
-              <option value="Rolls">Rolls</option>
-              <option value="Desert">Desert</option>
-              <option value="Sandwich">Sandwich</option>
-              <option value="Cake">Cake</option>
-              <option value="Pure Veg">Pure Veg</option>
-              <option value="Pasta"> Pasta</option>
-              <option value="Noodles">Noodles</option>
-            </select>
           </div>
-          <div className="add-price flex-col">
-            <p>Product Price</p>
+          <div className="add-product-name flex-col">
+            <p>Product Name</p>
             <input
               onChange={onChangeHandler}
-              value={data.price}
-              type="Number"
-              name="price"
-              placeholder="$20"
+              value={data.name}
+              type="text"
+              name="name"
+              placeholder="Type here"
             />
           </div>
-        </div>
-        <button type="submit" className="add-btn">
-          Add
-        </button>
-      </form>
-    </div>
+          <div className="add-product-description">
+            <p>Product Description</p>
+            <textarea
+              onChange={onChangeHandler}
+              value={data.description}
+              name="description"
+              id=""
+              rows={"6"}
+              placeholder="Write content here"
+            ></textarea>
+          </div>
+          <div className="add-category-price">
+            <div className="add-category flex-col">
+              <p>Product Category</p>
+              <select name="category" id="" onChange={onChangeHandler}>
+                <option value="Salad">Salad</option>
+                <option value="Rolls">Rolls</option>
+                <option value="Desert">Desert</option>
+                <option value="Sandwich">Sandwich</option>
+                <option value="Cake">Cake</option>
+                <option value="Pure Veg">Pure Veg</option>
+                <option value="Pasta"> Pasta</option>
+                <option value="Noodles">Noodles</option>
+              </select>
+            </div>
+            <div className="add-price flex-col">
+              <p>Product Price</p>
+              <input
+                onChange={onChangeHandler}
+                value={data.price}
+                type="Number"
+                name="price"
+                placeholder="$20"
+              />
+            </div>
+          </div>
+          <button type="submit" className="add-btn">
+            Add
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
 
-export default AddPage;
+export default Add;
